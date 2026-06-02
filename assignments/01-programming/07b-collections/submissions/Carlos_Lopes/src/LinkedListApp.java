@@ -29,18 +29,20 @@ public class LinkedListApp {
     System.out.println("Iterate from Position");
     System.out.println("Digite a posição que você deseja começar pecorrendo de 0 até o Tamanho da Lista");
     position = scanner.nextInt();
+
+    ListIterator<String> it = null;
+
     if(position < 0 || position >= ListaCores.size()){
-        System.out.println("Posição Invalida");
+        System.out.println("Posição Invalida\n");
     } else {
-    System.out.println("\n");
-    ListIterator<String> it = ListaCores.listIterator(position);
+
+    it = ListaCores.listIterator(position);
+
     while(it.hasNext()) {
         System.out.println(it.nextIndex() + " -> " + it.next());
      }
     }
-    System.out.println("\n");
-
-    System.out.println("Iterate in Reverse Order");
+    System.out.println("\nIterate in Reverse Order");
     while(it.hasPrevious()) {
         System.out.println(it.previousIndex() + " -> " + it.previous());
     }
