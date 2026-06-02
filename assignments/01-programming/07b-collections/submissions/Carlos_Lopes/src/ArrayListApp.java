@@ -29,7 +29,9 @@ public class ArrayListApp{
         System.out.println("Retrieve Element by Index");
         position = scanner.nextInt();
         scanner.nextLine();
+        if(position >= 0 && position < ListaCores.size()){
         System.out.println(ListaCores.get(position) + "\n");
+        }
   
         //Substituir Um elemento por Outro
         System.out.println("Replace ArrayList Element");
@@ -37,7 +39,7 @@ public class ArrayListApp{
         System.out.println("escolha a Cor que deseja substituir: ");
         cor = scanner.nextLine();
         position = ListaCores.indexOf(cor);
-        if(position != -1){
+        if(position >= 0 && position < ListaCores.size()){
             System.out.println("Qual sera a nova Cor: ");
             cor = scanner.nextLine();
             ListaCores.set(position, cor);
@@ -130,7 +132,7 @@ public class ArrayListApp{
         //Verificar se a Lista está Vazia
         System.out.println("Check if ArrayList is Empty");
         boolean isEmpty = ListaCoresV3.isEmpty();
-        if(isEmpty = true){
+        if(isEmpty == true){
             System.out.println("Lista esta Vazia\n");
         } else {
             System.out.println("Lista nao esta Vazia\n");

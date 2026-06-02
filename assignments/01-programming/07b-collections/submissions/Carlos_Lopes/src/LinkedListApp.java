@@ -31,12 +31,12 @@ public class LinkedListApp {
     position = scanner.nextInt();
     if(position < 0 || position >= ListaCores.size()){
         System.out.println("Posição Invalida");
-    }
+    } else {
     System.out.println("\n");
-
     ListIterator<String> it = ListaCores.listIterator(position);
     while(it.hasNext()) {
         System.out.println(it.nextIndex() + " -> " + it.next());
+     }
     }
     System.out.println("\n");
 
