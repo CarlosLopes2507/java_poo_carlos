@@ -32,7 +32,13 @@ public class GradeAnalyzer {
     }
 
     //Calcular Quantas notas estão acima da média
-    public static int countGradesAtOrAboveAverage(int[] grades, double media){
+    public static int countGradesAtOrAboveAverage(int[] grades){
+        int soma = 0;
+        for(int i = 0; i < grades.length;  i++){
+            soma += grades[i];
+        }
+        double media = (double) soma / grades.length;
+
         int AcimaMedia = 0;
         for(int i = 0; i < grades.length; i++){
             if(grades[i] >= media){
@@ -102,8 +108,8 @@ public class GradeAnalyzer {
         int MenorNota = findLowestGrade(grades);
         System.out.printf("Menor Nota: %d\n", MenorNota);
 
-        int AcimaMedia = countGradesAtOrAboveAverage(grades, media);
-        System.out.printf("Notas acima ou iguais à média: %d\n", AcimaMedia);
+        int AcimaMedia = countGradesAtOrAboveAverage(grades);
+        System.out.printf("Notas acima ou iguais à média: %d\n\n", AcimaMedia);
 
         System.out.print("Distribuição de notas:\n");
         int[] frequency = calculateFrequency(grades);
