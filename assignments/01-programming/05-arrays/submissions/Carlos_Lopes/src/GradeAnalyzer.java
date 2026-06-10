@@ -1,4 +1,3 @@
-import java.util.Array;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 public class GradeAnalyzer {
