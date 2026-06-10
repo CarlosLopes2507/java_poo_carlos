@@ -93,38 +93,6 @@ public class GradeAnalyzer {
             grades[i] = nota;
         }
 
-        /*for(int i = 0; i < Tamanho; i++){
-            System.out.printf("Digite a nota do estudante %d: ",i+1);
-            nota  = scanner.nextInt();
-            if(nota < 0 || nota > 100){
-                System.out.println("Nota Invalida Digite Novamente!");
-                i--;
-                }else {
-                grades[i] = nota;
-                }
-            }
-        
-        int position = 0;
-        while(position < Tamanho){
-            System.out.printf("Digite a nota do estudante %d: ", position+1);
-            nota = scanner.nextInt();
-            if(nota < 0 || nota > 100){
-                System.out.println("Nota Invalida Digite Novamente!");
-            }else if{
-                grades[position] = nota;
-                position++;
-            }
-        }
-        */
-
-        /*System.out.println("\nNotas da Turma");
-        int position = 1;
-        for(int value : grades){
-            System.out.printf("Nota do Estudante %d: %d",position, value);
-            System.out.print("\n");
-            position++;
-        }*/
-
         double media = calculateAverage(grades);
         System.out.printf("Média da turma: %.2f%n", media);
 
