@@ -1,6 +1,7 @@
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.nio.file.Path;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -13,10 +14,9 @@ import java.util.Properties;
 public class DvdRentalApp {
 
     public static void main(String[] args) {
+        // declaracao de variavel do tipo Properties
         Properties props = new Properties();
 
-        //Verificação da existência de db.properties, se não dispara o erro (IOException)
-        //(var input <-> InputStream input)
         try (var input = Files.newInputStream(Paths.get("db.properties"))) {
             props.load(input);
         } catch (IOException e) {
@@ -24,7 +24,6 @@ public class DvdRentalApp {
             return;
         }
 
-        //procura as linahs com essa credenciais o url, user, password de db.properties(seridor sgbd)
         String url = props.getProperty("url");
         String user = props.getProperty("user");
         String password = props.getProperty("password");
