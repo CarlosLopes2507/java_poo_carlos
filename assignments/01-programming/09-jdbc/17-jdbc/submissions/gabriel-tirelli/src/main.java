@@ -1,16 +1,29 @@
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 public class main {
 
-    private static final String URL = "jdbc:postgresql://localhost:5432/dvd_rental";
-    private static final String USER = "postgres";
-    private static final String PASSWORD = "postgres";
-
     public static void main(String[] args) {
+        Properties prop = new Properties();
+
+        try (InputStream input = new FileInputStream("db.properties")) {
+            prop.load(input);
+        } catch (IOException ex) {
+            System.err.println("File not found: " + ex.getMessage());
+        }
+
+        tring URL = prop.getProperty("db.url");
+        String USER = prop.getProperty("db.user");
+        String PASSWORD = prop.getProperty("db.password");
+        
         List<Film> films = FilmFileReader.readFilms("../../../data/new_films.txt");
 
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
