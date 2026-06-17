@@ -15,6 +15,8 @@ public class DvdRentalApp {
     public static void main(String[] args) {
         Properties props = new Properties();
 
+        //Verificação da existência de db.properties, se não dispara o erro (IOException)
+        //(var input <-> InputStream input)
         try (var input = Files.newInputStream(Paths.get("db.properties"))) {
             props.load(input);
         } catch (IOException e) {
@@ -22,18 +24,19 @@ public class DvdRentalApp {
             return;
         }
 
+        //procura as linahs com essa credenciais o url, user, password de db.properties(seridor sgbd)
         String url = props.getProperty("url");
         String user = props.getProperty("user");
         String password = props.getProperty("password");
 
+        //Tenta Conectar com o banco de dados diretamente com as credenciais do properties
         try (Connection conn = DriverManager.getConnection(url, user, password)) {
             conn.setAutoCommit(false); 
-
             System.out.println("=== Filmes disponíveis ===");
             try (Statement stmt = conn.createStatement();
                  ResultSet rs = stmt.executeQuery("SELECT film_id, title, release_year FROM film LIMIT 5")) {
-
-                while (rs.next()) {
+                //Executa uma query para mostrar cada linha do Postgree (ResultSet)  
+                while (rs.next()) { 
                     System.out.printf("ID: %d | Título: %s | Ano: %s%n",
                             rs.getInt("film_id"),
                             rs.getString("title"),
@@ -41,6 +44,8 @@ public class DvdRentalApp {
                 }
             }
 
+            //Query de Busca e filtração para encontar informações especificas
+            //ex: atores com sobrenome Chase
             System.out.println("\n=== Buscar ator pelo sobrenome ===");
             String sobrenome = "Chase";
             try (PreparedStatement ps = conn.prepareStatement(

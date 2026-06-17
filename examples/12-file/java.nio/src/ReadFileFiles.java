@@ -5,17 +5,17 @@ import java.nio.file.Path;
 
 public class ReadFileFiles {
     public static void main(String[] args){
-        try {
-            Path p = Path.of("data/hello.txt");
-            
-            System.out.println(Files.readAllLines(p));
+            try {
+                        Path p = Path.of("data/hello.txt");
+                                    
+                                                System.out.println(Files.readAllLines(p));
 
-            System.out.println(Files.readString(p));
+                                                            System.out.println(Files.readString(p));
 
-        } catch (FileNotFoundException fne){
-            System.out.println("Arquivo não encontrado.");
-        } catch (IOException ioe){
-            System.out.println("Erro ao ler o arquivo.");
-        } 
-    }
-}
+                                                                    } catch (FileNotFoundException fne){
+                                                                                System.out.println("Arquivo não encontrado.");
+                                                                                        } catch (IOException ioe){
+                                                                                                    System.out.println("Erro ao ler o arquivo.");
+                                                                                                            } 
+                                                                                                                }
+                                                                                                                }
