@@ -28,7 +28,13 @@ public class IDPFlixApp {
         ArrayList<Film> films = FileReader.readFilms(dataPath);
         System.out.println(films.size() + " filmes lidos do arquivo.");
 
-        try (Connection conn = DriverManager.getConnection(url, user, password)) {
+        Properties connProps = new Properties();
+        connProps.setProperty("user", user);
+        connProps.setProperty("password", password);
+        connProps.setProperty("connectTimeout", "10");
+        connProps.setProperty("socketTimeout", "30");
+
+        try (Connection conn = DriverManager.getConnection(url, connProps)) {
 
             String insertSql = "INSERT INTO film (title, language_id, rental_duration, rental_rate, replacement_cost) VALUES (?, ?, ?, ?, ?)";
             try (PreparedStatement pstmt = conn.prepareStatement(insertSql)) {
@@ -38,8 +44,9 @@ public class IDPFlixApp {
                     pstmt.setInt(3, film.getRentalDuration());
                     pstmt.setDouble(4, film.getRentalRate());
                     pstmt.setDouble(5, film.getReplacementCost());
-                    pstmt.executeUpdate();
+                    pstmt.addBatch();
                 }
+                pstmt.executeBatch();
             }
             System.out.println(films.size() + " filmes importados para o banco.");
 
